@@ -1,9 +1,25 @@
+import { useState } from "react";
 import { Button } from "../ui/button";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log("email is", email);
+    console.log("password is", password);
+
+    setEmail("");
+    setPassword("");
+  };
   return (
     <div className="bg-gray-900 flex justify-center items-center h-screen">
-      <form>
+      <form
+        onSubmit={(e) => {
+          submitHandler(e);
+        }}
+      >
         <div className="flex flex-col relative w-xl  bg-gray-200 text-white items-center py-10 h-2/3 rounded-4xl">
           <h1 className="text-orange-600 font-bold text-3xl gap-3">
             Login here
@@ -12,12 +28,20 @@ const Login = () => {
           <p className="text-black font-medium text">Welcome back you've</p>
           <p className="text-black font-medium">been missed!</p>
           <input
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             className="bg-orange-200 outline-orange-600 rounded placeholder: text-gray-700 px-3 placeholder w-xs h-10 mt-5 "
             placeholder="Enter your email"
             type="email"
           />
           <br></br>
           <input
+            value={Password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
             className="bg-orange-200 rounded outline-orange-600  placeholder: text-gray-700 px-3 mt-5 w-xs h-10"
             placeholder="Enter your Password"
             type="password"
@@ -32,8 +56,6 @@ const Login = () => {
           <a href="#" className=" mt-5 text-black font-medium">
             Create New Account
           </a>
-
-          
         </div>
       </form>
     </div>

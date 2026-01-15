@@ -1,11 +1,15 @@
-import React from 'react'
+import Header from "../other/Header";
+import TaskNo from "../other/TaskNo";
+import TaskList from "../TaskList/TaskList";
 
 const EmployeeDasboard = () => {
   return (
-    <div>
-      
+    <div className="px-5 h-screen py-8">
+      <Header />
+      <TaskNo />
+      <TaskList />
     </div>
-  )
-}
+  );
+};
 
-export default EmployeeDasboard
+export default EmployeeDasboard;
