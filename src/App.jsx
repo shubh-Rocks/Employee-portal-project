@@ -1,12 +1,12 @@
-import React from 'react'
-import Login from './components/auth/Login'
+import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup";
 
 const App = () => {
   return (
     <>
-      <Login />
+      <Signup />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
