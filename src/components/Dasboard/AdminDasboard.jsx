@@ -1,16 +1,14 @@
-import React from 'react'
+import CreateTask from "../other/CreateTask";
+import Header from "../other/Header";
+
 
 const AdminDasboard = () => {
   return (
-    <div className='h-screen '>
-        <h1 className='text-3xl font-bold text-center mt-10'>Admin Dashboard</h1>
-        <form>
-            <h3>
-                
-            </h3>
-        </form>
+    <div className="p-10">
+      <Header/>
+      <CreateTask/>
     </div>
-  )
-}
+  );
+};
 
-export default AdminDasboard
+export default AdminDasboard;
