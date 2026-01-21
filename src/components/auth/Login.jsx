@@ -1,25 +1,40 @@
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { UserAuth } from "@/context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log("email is", email);
-    console.log("password is", password);
+  const [loading, setLoading] = useState(false);
 
-    setEmail("");
-    setPassword("");
+  const [error, setError] = useState("");
+
+  const { session, LogInUser } = UserAuth();
+  console.log(session);
+
+  const handleLogIn = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setError("");
+
+    const result = await LogInUser(email, Password);
+
+    if (!result.success) {
+      setError(result.error.message);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
+    navigate("/EmployeeDasboard");
+    alert("Login successful! Check Supabase Auth Users.");
   };
+
   return (
     <div className="bg-gray-900 flex justify-center items-center h-screen">
-      <form
-        onSubmit={(e) => {
-          submitHandler(e);
-        }}
-      >
+      <form onSubmit={handleLogIn}>
         <div className="flex flex-col relative w-xl  bg-gray-200 text-white items-center py-10 h-2/3 rounded-4xl">
           <h1 className="text-orange-600 font-bold text-3xl gap-3">
             Login here
@@ -51,7 +66,7 @@ const Login = () => {
           </a>
 
           <Button className="mt-5" variant="success">
-            Sign IN
+            LOGIN
           </Button>
           <a href="#" className=" mt-5 text-black font-medium">
             Create New Account
